@@ -1,0 +1,23 @@
+1. create table person_228(driver_id varchar(5), name varchar(10), address varchar(10), primary key(driver_id));
+   create table car_228(regno varchar(10), model varchar(10), year int, primary key(regno)); 
+   create table accident_228(reportno varchar(10), accd_date date, location varchar(10), primary key(reportno));
+   create table owns_228(driver_id varchar(5), regno varchar(10), primary key(driver_id, regno), foreign key(driver_id) references person_228, foreign key(regno) references car_228);
+   create table participated_228(driver_id varchar(5), regno varchar(10), reportno varchar(10), damage_amount int, primary key(driver_id, regno, reportno), foreign key(driver_id) references person_228, foreign key(regno) references car_228, foreign key(reportno) references accident_228);
+
+2. insert into person values('1', 'Suresh', '226 Fleet');
+   insert into person values('2', 'Holmes', '221 Baker');
+   insert into car_228 values('1', 'Honda', 1998);
+   insert into car_228 values('2', 'Mustang', 1967);
+   insert into owns_228 values('1','1');
+   insert into owns_228 values('2','2');
+
+3. update participated_228 set damage_amount = 25000 where reportno='12';
+
+4. insert into accident_228 values('100', '17-apr-2004', 'Sussex');
+   delete from accident_228 where extract(year from accd_date) = 2004;
+
+5. alter table owns_228 add extra varchar(10);
+   alter table owns_228 drop column extra;
+
+6. alter table person_228 add constraint checker check (name is not null);
+
